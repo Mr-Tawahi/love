@@ -1,176 +1,176 @@
-!DOCTYPE html
-html lang=en
-head
-meta charset=UTF-8
-meta name=viewport content=width=device-width, initial-scale=1.0
-titleHappy Rose Day ❤️title
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Rose Day ❤️</title>
 
-style
-{
-  margin0;
-  padding0;
-  box-sizingborder-box;
-  font-family Poppins, sans-serif;
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body{
-  background radial-gradient(circle, #ff5f6d, #ffc371);
-  overflowhidden;
-  text-aligncenter;
-  colorwhite;
-  height100vh;
+  background: radial-gradient(circle, #ff5f6d, #ffc371);
+  overflow:hidden;
+  text-align:center;
+  color:white;
+  height:100vh;
 }
 
- Hearts background 
+/* Hearts background */
 .heart{
-  positionfixed;
-  colorred;
-  font-size20px;
-  animation float 6s linear infinite;
+  position:fixed;
+  color:red;
+  font-size:20px;
+  animation: float 6s linear infinite;
 }
 
 @keyframes float{
-  0%{transformtranslateY(100vh) scale(0);}
-  100%{transformtranslateY(-10vh) scale(1);}
+  0%{transform:translateY(100vh) scale(0);}
+  100%{transform:translateY(-10vh) scale(1);}
 }
 
- Main box 
+/* Main box */
 .container{
-  positionabsolute;
-  top50%;
-  left50%;
-  transformtranslate(-50%,-50%);
-  background rgba(0,0,0,0.4);
-  padding30px 40px;
-  border-radius20px;
-  box-shadow0 0 20px rgba(255,255,255,0.3);
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background: rgba(0,0,0,0.4);
+  padding:30px 40px;
+  border-radius:20px;
+  box-shadow:0 0 20px rgba(255,255,255,0.3);
 }
 
 h1{
-  font-size2.5rem;
-  margin-bottom10px;
-  animation glow 2s infinite alternate;
+  font-size:2.5rem;
+  margin-bottom:10px;
+  animation: glow 2s infinite alternate;
 }
 
 @keyframes glow{
-  from{text-shadow0 0 10px pink;}
-  to{text-shadow0 0 30px red;}
+  from{text-shadow:0 0 10px pink;}
+  to{text-shadow:0 0 30px red;}
 }
 
 .typing{
-  font-size1.3rem;
-  margin-top10px;
-  height60px;
+  font-size:1.3rem;
+  margin-top:10px;
+  height:60px;
 }
 
 button{
-  padding12px 30px;
-  bordernone;
-  border-radius30px;
-  font-size18px;
-  backgroundwhite;
-  colorred;
-  cursorpointer;
-  margin-top20px;
-  transition0.3s;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  font-size:18px;
+  background:white;
+  color:red;
+  cursor:pointer;
+  margin-top:20px;
+  transition:0.3s;
 }
 
-buttonhover{
-  backgroundyellow;
+button:hover{
+  background:yellow;
 }
 
- Love Letter Popup 
+/* Love Letter Popup */
 .popup{
-  displaynone;
-  positionfixed;
-  top0; left0;
-  width100%;
-  height100%;
-  backgroundrgba(0,0,0,0.7);
-  justify-contentcenter;
-  align-itemscenter;
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  justify-content:center;
+  align-items:center;
 }
 
 .letter{
-  backgroundwhite;
-  colorblack;
-  padding20px;
-  border-radius15px;
-  width80%;
-  max-width400px;
-  font-size18px;
-  text-alignleft;
+  background:white;
+  color:black;
+  padding:20px;
+  border-radius:15px;
+  width:80%;
+  max-width:400px;
+  font-size:18px;
+  text-align:left;
 }
 
 .close{
-  text-alignright;
-  cursorpointer;
-  font-size20px;
+  text-align:right;
+  cursor:pointer;
+  font-size:20px;
 }
-style
-head
+</style>
+</head>
 
-body
+<body>
 
-!-- Music --
-audio autoplay loop
-  source src=love.mp3 type=audiompeg
-audio
+<!-- Music -->
+<audio autoplay loop>
+  <source src="love.mp3" type="audio/mpeg">
+</audio>
 
-div class=container
-  h1Happy Rose Day, My Love 🌹❤️h1
-  div class=typing id=textdiv
+<div class="container">
+  <h1>Happy Rose Day, My Love 🌹❤️</h1>
+  <div class="typing" id="text"></div>
 
-  button onclick=openLetter()Open My Love Letter 💌button
-div
+  <button onclick="openLetter()">Open My Love Letter 💌</button>
+</div>
 
-!-- Love Letter --
-div class=popup id=popup
-  div class=letter
-    div class=close onclick=closeLetter()❌div
-    h3My Dear Love ❤️h3
-    p
+<!-- Love Letter -->
+<div class="popup" id="popup">
+  <div class="letter">
+    <div class="close" onclick="closeLetter()">❌</div>
+    <h3>My Dear Love ❤️</h3>
+    <p>
       You are the most beautiful part of my life.  
       Just like a rose, you make my world colorful and fragrant.  
       I promise to love you forever.  
-      brbr
+      <br><br>
       Happy Rose Day, My Queen 🌹💖
-    p
-  div
-div
+    </p>
+  </div>
+</div>
 
-script
- Typing Effect
-let message = You are my favorite person, my best friend, my love, and my everything 💕;
+<script>
+// Typing Effect
+let message = "You are my favorite person, my best friend, my love, and my everything 💕";
 let i=0;
 function type(){
-  if(imessage.length){
-    document.getElementById(text).innerHTML += message.charAt(i);
+  if(i<message.length){
+    document.getElementById("text").innerHTML += message.charAt(i);
     i++;
     setTimeout(type,50);
   }
 }
 type();
 
- Hearts Generator
-setInterval(()={
-  let heart=document.createElement(div);
-  heart.className=heart;
-  heart.innerHTML=❤️;
-  heart.style.left=Math.random()100+%;
-  heart.style.fontSize=(Math.random()30+10)+px;
+// Hearts Generator
+setInterval(()=>{
+  let heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"%";
+  heart.style.fontSize=(Math.random()*30+10)+"px";
   document.body.appendChild(heart);
-  setTimeout(()=heart.remove(),6000);
+  setTimeout(()=>heart.remove(),6000);
 },300);
 
- Popup Functions
+// Popup Functions
 function openLetter(){
-  document.getElementById(popup).style.display=flex;
+  document.getElementById("popup").style.display="flex";
 }
 function closeLetter(){
-  document.getElementById(popup).style.display=none;
+  document.getElementById("popup").style.display="none";
 }
-script
+</script>
 
-body
-html
+</body>
+</html>
