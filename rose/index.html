@@ -1,0 +1,176 @@
+!DOCTYPE html
+html lang=en
+head
+meta charset=UTF-8
+meta name=viewport content=width=device-width, initial-scale=1.0
+titleHappy Rose Day ❤️title
+
+style
+{
+  margin0;
+  padding0;
+  box-sizingborder-box;
+  font-family Poppins, sans-serif;
+}
+
+body{
+  background radial-gradient(circle, #ff5f6d, #ffc371);
+  overflowhidden;
+  text-aligncenter;
+  colorwhite;
+  height100vh;
+}
+
+ Hearts background 
+.heart{
+  positionfixed;
+  colorred;
+  font-size20px;
+  animation float 6s linear infinite;
+}
+
+@keyframes float{
+  0%{transformtranslateY(100vh) scale(0);}
+  100%{transformtranslateY(-10vh) scale(1);}
+}
+
+ Main box 
+.container{
+  positionabsolute;
+  top50%;
+  left50%;
+  transformtranslate(-50%,-50%);
+  background rgba(0,0,0,0.4);
+  padding30px 40px;
+  border-radius20px;
+  box-shadow0 0 20px rgba(255,255,255,0.3);
+}
+
+h1{
+  font-size2.5rem;
+  margin-bottom10px;
+  animation glow 2s infinite alternate;
+}
+
+@keyframes glow{
+  from{text-shadow0 0 10px pink;}
+  to{text-shadow0 0 30px red;}
+}
+
+.typing{
+  font-size1.3rem;
+  margin-top10px;
+  height60px;
+}
+
+button{
+  padding12px 30px;
+  bordernone;
+  border-radius30px;
+  font-size18px;
+  backgroundwhite;
+  colorred;
+  cursorpointer;
+  margin-top20px;
+  transition0.3s;
+}
+
+buttonhover{
+  backgroundyellow;
+}
+
+ Love Letter Popup 
+.popup{
+  displaynone;
+  positionfixed;
+  top0; left0;
+  width100%;
+  height100%;
+  backgroundrgba(0,0,0,0.7);
+  justify-contentcenter;
+  align-itemscenter;
+}
+
+.letter{
+  backgroundwhite;
+  colorblack;
+  padding20px;
+  border-radius15px;
+  width80%;
+  max-width400px;
+  font-size18px;
+  text-alignleft;
+}
+
+.close{
+  text-alignright;
+  cursorpointer;
+  font-size20px;
+}
+style
+head
+
+body
+
+!-- Music --
+audio autoplay loop
+  source src=love.mp3 type=audiompeg
+audio
+
+div class=container
+  h1Happy Rose Day, My Love 🌹❤️h1
+  div class=typing id=textdiv
+
+  button onclick=openLetter()Open My Love Letter 💌button
+div
+
+!-- Love Letter --
+div class=popup id=popup
+  div class=letter
+    div class=close onclick=closeLetter()❌div
+    h3My Dear Love ❤️h3
+    p
+      You are the most beautiful part of my life.  
+      Just like a rose, you make my world colorful and fragrant.  
+      I promise to love you forever.  
+      brbr
+      Happy Rose Day, My Queen 🌹💖
+    p
+  div
+div
+
+script
+ Typing Effect
+let message = You are my favorite person, my best friend, my love, and my everything 💕;
+let i=0;
+function type(){
+  if(imessage.length){
+    document.getElementById(text).innerHTML += message.charAt(i);
+    i++;
+    setTimeout(type,50);
+  }
+}
+type();
+
+ Hearts Generator
+setInterval(()={
+  let heart=document.createElement(div);
+  heart.className=heart;
+  heart.innerHTML=❤️;
+  heart.style.left=Math.random()100+%;
+  heart.style.fontSize=(Math.random()30+10)+px;
+  document.body.appendChild(heart);
+  setTimeout(()=heart.remove(),6000);
+},300);
+
+ Popup Functions
+function openLetter(){
+  document.getElementById(popup).style.display=flex;
+}
+function closeLetter(){
+  document.getElementById(popup).style.display=none;
+}
+script
+
+body
+html
