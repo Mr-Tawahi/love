@@ -1,204 +1,193 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>For My Love ❤️</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Forever ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <style>
+        :root {
+            --rose: #ff4d6d;
+            --wine: #590d22;
+            --blush: #ffb3c1;
+        }
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  font-family: Poppins, sans-serif;
-  box-sizing:border-box;
-}
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #fff0f3 0%, #ffccd5 100%);
+            font-family: 'Poppins', sans-serif;
+        }
 
-body{
-  background: Black;
-  overflow:hidden;
-  text-align:center;
-  color:white;
-}
+        #canvas { position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none; }
 
-/* Floating hearts */
-.heart{
-  position:fixed;
-  color:red;
-  font-size:20px;
-  animation: float 6s linear infinite;
-}
+        .container {
+            position: relative; z-index: 10;
+            display: flex; justify-content: center; align-items: center;
+            height: 100vh;
+        }
 
-@keyframes float{
-  0%{transform:translateY(100vh) scale(0);}
-  100%{transform:translateY(-10vh) scale(1);}
-}
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 40px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 30px 60px rgba(255, 77, 109, 0.2);
+            max-width: 400px;
+            width: 85%;
+        }
 
-/* Main Box */
-.box{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background: rgba(0,0,0,0.4);
-  padding:20px;
-  border-radius:20px;
-  box-shadow:0 0 30px pink;
-  width:90%;
-  max-width:350px;
-}
+        /* Photo Styling */
+        .photo-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.3);
+            overflow: hidden;
+            animation: pulse-border 2s infinite;
+        }
 
-/* Photo */
-img{
-  width:120px;
-  border-radius:50%;
-  border:4px solid white;
-  box-shadow:0 0 20px pink;
-}
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-h1{
-  font-size:1.6rem;
-  margin-top:10px;
-}
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(255, 77, 109, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 77, 109, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 77, 109, 0); }
+        }
 
-#typing{
-  font-size:1rem;
-  margin-top:10px;
-  min-height:40px;
-}
+        h1 { font-family: 'Dancing Script', cursive; color: var(--rose); font-size: 2.8rem; margin: 10px 0; }
+        p { color: var(--wine); font-size: 1rem; margin-bottom: 25px; }
 
-/* Buttons */
-button{
-  padding:10px 20px;
-  border:none;
-  border-radius:20px;
-  font-size:14px;
-  margin:8px;
-  cursor:pointer;
-}
+        .btn-group { display: flex; justify-content: center; gap: 15px; position: relative; }
 
-.play{
-  background:yellow;
-  color:black;
-}
+        .btn {
+            padding: 12px 30px; border-radius: 50px; border: none;
+            font-weight: 600; cursor: pointer; transition: 0.3s;
+        }
 
-.yes{
-  background:lime;
-  color:black;
-}
+        #yesBtn { background: var(--rose); color: white; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4); }
+        #noBtn { background: white; color: var(--wine); position: relative; }
 
-.no{
-  background:red;
-  color:white;
-}
-
-/* Love Letter Popup */
-.popup{
-  display:none;
-  position:fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background:rgba(0,0,0,0.8);
-  justify-content:center;
-  align-items:center;
-}
-
-.letter{
-  background:white;
-  color:black;
-  padding:15px;
-  border-radius:15px;
-  width:90%;
-  max-width:300px;
-}
-
-.close{
-  text-align:right;
-  cursor:pointer;
-}
-</style>
+        .music-note {
+            position: fixed; bottom: 20px; right: 20px; cursor: pointer; z-index: 100;
+            background: white; padding: 12px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- Music -->
-<audio id="music">
-  <source src="love.mp3">
-</audio>
+    <audio id="loveSong" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
-<div class="box">
-  <img src="her.jpg">
+    <div class="music-note" onclick="toggleMusic()">🎵</div>
 
-  <h1>Happy Rose Day My Shrmili 🌹</h1>
-  <div id="typing"></div>
+    <div class="container">
+        <div class="glass-card">
+            <div class="photo-container">
+                <img src="her-photo.jpg" alt="My Valentine" onerror="this.src='https://images.unsplash.com/photo-1518197146369-01159947588e?q=80&w=500&auto=format&fit=crop'">
+            </div>
+            
+            <h1>For My Sharmili ❤️</h1>
+            <p>Every moment with you is a gift. You're the most beautiful person I know, inside and out. Will you be my Valentine?</p>
+            
+            <div class="btn-group">
+                <button class="btn" id="yesBtn" onclick="celebrate()">YES!</button>
+                <button class="btn" id="noBtn" onmouseover="moveNo()">No</button>
+            </div>
+        </div>
+    </div>
 
-  <button class="play" onclick="playMusic()">▶ Play Love Song</button>
-  <button onclick="openLetter()">💌 My Love Letter</button>
+    <canvas id="canvas"></canvas>
 
-  <h3>Will You Be Mine Forever? 💍</h3>
-  <button class="yes" onclick="alert('I LOVE YOU SOO MUCH MERI JAAN 😭❤️')">YES 😍</button>
-  <button class="no" id="noBtn">NO 😈</button>
-</div>
+    <script>
+        const audio = document.getElementById('loveSong');
+        let musicStarted = false;
 
-<!-- Love Letter -->
-<div class="popup" id="popup">
-  <div class="letter">
-    <div class="close" onclick="closeLetter()">❌</div>
-    <h3>MERI JAAN❤️</h3>
-    <p>
-      You are my happiness, my peace, my everything.  
-      I promise to love you forever.  
-      Happy Rose Day 🌹  
-      <br><br>
-      Apka Kushuuu 💕
-    </p>
-  </div>
-</div>
+        function toggleMusic() {
+            if (audio.paused) audio.play();
+            else audio.pause();
+        }
 
-<script>
-// Typing Effect
-let msg="You are the most beautiful girl in my life 💖";
-let i=0;
-function type(){
-  if(i<msg.length){
-    document.getElementById("typing").innerHTML+=msg.charAt(i);
-    i++;
-    setTimeout(type,50);
-  }
-}
-type();
+        // The "Runaway No" Logic
+        function moveNo() {
+            const noBtn = document.getElementById('noBtn');
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
 
-// Floating Hearts
-setInterval(()=>{
- let h=document.createElement("div");
- h.className="heart";
- h.innerHTML="❤️";
- h.style.left=Math.random()*100+"%";
- h.style.fontSize=(Math.random()*30+10)+"px";
- document.body.appendChild(h);
- setTimeout(()=>h.remove(),6000);
-},300);
+        function celebrate() {
+            if(!musicStarted) { audio.play(); musicStarted = true; }
+            
+            // Big Confetti burst
+            const count = 200;
+            const defaults = { origin: { y: 0.7 }, colors: ['#ff4d6d', '#ffffff'] };
 
-// Music Play Fix
-function playMusic(){
-  document.getElementById("music").play();
-  alert("Love song playing 💖");
-}
+            function fire(particleRatio, opts) {
+                confetti({ ...defaults, ...opts, particleCount: Math.floor(count * particleRatio) });
+            }
 
-// Love Letter Popup
-function openLetter(){
- document.getElementById("popup").style.display="flex";
-}
-function closeLetter(){
- document.getElementById("popup").style.display="none";
-}
+            fire(0.25, { spread: 26, startVelocity: 55 });
+            fire(0.2, { spread: 60 });
+            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
 
-// NO Button Run Away
-let no=document.getElementById("noBtn");
-no.onmouseover=function(){
- no.style.position="absolute";
- no.style.left=Math.random()*80+"%";
- no.style.top=Math.random()*80+"%";
-}
-</script>
+            document.querySelector('h1').innerText = "I Knew It! 😘";
+            document.querySelector('p').innerText = "I'm the luckiest guy in the world. I love you soo much meri jaan!";
+            document.getElementById('noBtn').style.display = 'none';
+            document.getElementById('yesBtn').innerText = "Forever & Always";
+        }
 
+        // Particle System (Hearts)
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let hearts = [];
+
+        class Heart {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + 50;
+                this.size = Math.random() * 15 + 5;
+                this.speed = Math.random() * 2 + 0.5;
+                this.opacity = Math.random() * 0.4 + 0.1;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(255, 77, 109, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.bezierCurveTo(this.x - this.size, this.y - this.size, this.x - this.size * 1.5, this.y + this.size / 3, this.x, this.y + this.size);
+                ctx.bezierCurveTo(this.x + this.size * 1.5, this.y + this.size / 3, this.x + this.size, this.y - this.size, this.x, this.y);
+                ctx.fill();
+            }
+            update() {
+                this.y -= this.speed;
+                if (this.y < -50) this.y = canvas.height + 50;
+            }
+        }
+
+        function init() { for (let i = 0; i < 30; i++) hearts.push(new Heart()); }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            hearts.forEach(h => { h.update(); h.draw(); });
+            requestAnimationFrame(animate);
+        }
+        init(); animate();
+        window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+    </script>
 </body>
 </html>
